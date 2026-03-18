@@ -17,6 +17,9 @@ import csv
 import json
 import duckdb
 import pandas as pd
+from streamlit_js_eval import streamlit_js_eval
+
+STORAGE_KEY = "kf-stock-watch-menus"
 
 # --- Header ---
 render_header()
@@ -27,6 +30,22 @@ if "menus" not in st.session_state:
     st.session_state.menus = []  # [{name, price, ingredients: [{item, quantity, unit}]}]
 if "reorder_points" not in st.session_state:
     st.session_state.reorder_points = {}  # {item_name: threshold}
+
+# --- Load from localStorage ---
+if "data_loaded" not in st.session_state:
+    stored = streamlit_js_eval(js_expressions=f'localStorage.getItem("{STORAGE_KEY}")')
+    if stored and stored != "null":
+        try:
+            st.session_state.menus = json.loads(stored)
+        except Exception:
+            pass
+    st.session_state.data_loaded = True
+
+
+def save_to_local_storage():
+    """Save menus to browser localStorage."""
+    data_json = json.dumps(st.session_state.menus, ensure_ascii=False)
+    streamlit_js_eval(js_expressions=f'localStorage.setItem("{STORAGE_KEY}", {json.dumps(data_json)})')
 
 # --- Sample CSV for download ---
 SAMPLE_CSV = """item,quantity,unit,unit_price,date
@@ -401,6 +420,7 @@ with tab_menu:
                     "ingredients": ingredients,
                 }
                 st.session_state.menus.append(menu_entry)
+                save_to_local_storage()
                 st.success(t("menu_registered").format(name=menu_name.strip()))
 
     # --- Display registered menus ---
@@ -451,6 +471,7 @@ with tab_menu:
                 # Delete button
                 if st.button(t("menu_delete"), key=f"del_menu_{idx}"):
                     st.session_state.menus.pop(idx)
+                    save_to_local_storage()
                     st.rerun()
     else:
         st.info(t("menu_empty"))
