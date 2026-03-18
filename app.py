@@ -546,4 +546,4 @@ with tab_cost:
                 st.info(t("menu_no_ingredients"))
 
 # --- Footer ---
-render_footer(libraries=["DuckDB", "Streamlit charts"])
+render_footer(libraries=["DuckDB", "Streamlit charts"], repo_name="kf-stock-watch")
