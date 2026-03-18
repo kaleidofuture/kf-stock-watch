@@ -90,11 +90,10 @@ with tab_inventory:
             try:
                 con = duckdb.connect(":memory:")
 
-                # Load CSV into DuckDB
-                con.execute("""
-                    CREATE TABLE stock AS
-                    SELECT * FROM read_csv_auto(?)
-                """, [io.StringIO(content)])
+                # Load CSV into DuckDB via pandas (read_csv_auto doesn't accept StringIO as parameter)
+                df_stock = pd.read_csv(io.StringIO(content))
+                con.register("stock_view", df_stock)
+                con.execute("CREATE TABLE stock AS SELECT * FROM stock_view")
 
                 # Get column names
                 columns = [col[0] for col in con.execute("DESCRIBE stock").fetchall()]
