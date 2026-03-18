@@ -1,3 +1,14 @@
+---
+title: kf-stock-watch
+emoji: 🚀
+colorFrom: green
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.44.1
+app_file: app.py
+pinned: false
+---
+
 # KF-StockWatch
 
 > 飲食店の在庫を見える化して、在庫切れとロスを防ぐ。
