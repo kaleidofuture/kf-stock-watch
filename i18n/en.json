@@ -77,5 +77,6 @@
   "cost_calc_no_menus": "No menus registered. Register menus in the \"Menu Registration\" tab first.",
   "cost_calc_no_prices": "Unit price data not loaded. Upload a CSV and run analysis in the \"Inventory\" tab first.",
   "cost_detail_title": "Cost Breakdown by Menu",
-  "cost_select_menu": "Select a menu"
+  "cost_select_menu": "Select a menu",
+  "report_issue": "Report an issue"
 }

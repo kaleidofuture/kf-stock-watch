@@ -77,5 +77,6 @@
   "cost_calc_no_menus": "メニューが登録されていません。先に「メニュー登録」タブでメニューを登録してください。",
   "cost_calc_no_prices": "在庫データの単価情報が読み込まれていません。「在庫管理」タブでCSVをアップロードして分析を実行してください。",
   "cost_detail_title": "メニュー別 原価内訳",
-  "cost_select_menu": "メニューを選択"
+  "cost_select_menu": "メニューを選択",
+  "report_issue": "不具合を報告"
 }
