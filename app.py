@@ -19,6 +19,7 @@ import pandas as pd
 
 # --- Header ---
 render_header()
+st.info("💻 " + t("desktop_recommended"))
 
 # --- Sample CSV for download ---
 SAMPLE_CSV = """item,quantity,unit,date

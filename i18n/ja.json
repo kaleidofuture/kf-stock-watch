@@ -32,5 +32,6 @@
   "summary_title": "集計サマリー",
   "download_report": "レポートCSVをダウンロード",
   "error": "エラーが発生しました: {error}",
-  "no_file": "在庫CSVファイルをアップロードしてください。"
+  "no_file": "在庫CSVファイルをアップロードしてください。",
+  "desktop_recommended": "このアプリはデスクトップでのご利用を推奨しています"
 }
